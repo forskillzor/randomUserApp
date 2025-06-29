@@ -17,7 +17,7 @@ data class Location(
     val street: Street,
     val city: String,
     val country: String,
-    val postcode: String
+    val postcode: Int
 )
 
 data class Street(

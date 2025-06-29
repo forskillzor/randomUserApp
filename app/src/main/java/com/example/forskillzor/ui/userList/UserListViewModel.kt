@@ -1,9 +1,10 @@
 package com.example.forskillzor.ui.userList
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.forskillzor.domain.models.User
-import com.example.forskillzor.domain.repository.UserRepository
+import com.example.forskillzor.domain.usecases.GetUserListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    private val repository: UserRepository
+    private val getUserListUseCase: GetUserListUseCase
 ): ViewModel() {
     private val _userList = MutableStateFlow<List<User>>(emptyList())
     val userList = _userList.asStateFlow()
@@ -20,8 +21,9 @@ class UserListViewModel @Inject constructor(
 
     fun getUserList(){
         viewModelScope.launch {
-            repository.getUserList().collect { list ->
+            getUserListUseCase().collect { list ->
                 _userList.value = list
+                Log.d("TAGRTRT","user list: $list")
             }
         }
     }
