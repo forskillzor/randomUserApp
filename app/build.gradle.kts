@@ -60,6 +60,8 @@ dependencies {
 
     // retrofit
     implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
 
 
     testImplementation(libs.junit)
