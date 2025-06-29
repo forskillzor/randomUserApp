@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#000"
+        />
+    <Space
+        android:id="@+id/spacer"
+        android:layout_width="16dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        />
+    <TextView
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spacer"
+        android:textSize="16sp"
+        tools:text = "Sergey" />
+    <TextView
+        android:id="@+id/second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/first"
+        android:textSize="16sp"
+        android:layout_marginStart="8dp"
+        tools:text = "Orlov" />
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/first"
+        app:layout_constraintStart_toEndOf="@id/spacer"
+        android:textSize="12sp"
+        tools:text = "Russia" />
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/first"
+        app:layout_constraintStart_toEndOf="@id/country"
+        android:textSize="12sp"
+        android:layout_marginStart="8dp"
+        tools:text = "Novosibirsk" />
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/country"
+        app:layout_constraintStart_toEndOf="@id/spacer"
+        android:textSize="12sp"
+        tools:text = "+79134743702" />
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/phone"
+        app:layout_constraintStart_toEndOf="@id/spacer"
+        android:textSize="12sp"
+        tools:text = "skillzorwispa@gmai.com" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
