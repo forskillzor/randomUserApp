@@ -12,7 +12,8 @@ data class UserDto(
     val name: UserName,
     val email: String,
     val phone: String,
-    val location: Location
+    val location: Location,
+    val picture: Picture
 )
 
 @Serializable
@@ -27,7 +28,6 @@ data class Location(
     val street: Street,
     val city: String,
     val country: String,
-    val postcode: Int
 )
 
 @Serializable
@@ -40,4 +40,11 @@ data class Street(
 data class Coordinates(
     val latitude: String,
     val longitude: String
+)
+
+@Serializable
+data class Picture(
+    val large: String,
+    val medium: String,
+    val thumbnail: String
 )

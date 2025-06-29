@@ -1,5 +1,6 @@
 package com.example.forskillzor.data.mapper
 
+import com.example.forskillzor.domain.models.Picture
 import com.example.forskillzor.data.models.UserDto
 import com.example.forskillzor.domain.models.Location
 import com.example.forskillzor.domain.models.Street
@@ -23,7 +24,11 @@ fun UserDto.toDomain(): User {
             ),
             city = this.location.city,
             country = this.location.country,
-            postcode = this.location.postcode
+        ),
+        picture = Picture(
+            large = this.picture.large,
+            medium = this.picture.medium,
+            thumbnail = this.picture.thumbnail
         )
     )
 }

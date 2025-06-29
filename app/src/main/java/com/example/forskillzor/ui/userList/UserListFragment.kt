@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.forskillzor.R
 import com.example.forskillzor.databinding.FragmentUserListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
@@ -25,7 +29,15 @@ class UserListFragment : Fragment() {
     ): View? {
         binding = FragmentUserListBinding.inflate(layoutInflater, container, false)
         // todo add adapter here
-//        binding.recyclerView.adapter =
+        binding.recyclerView.apply {
+            adapter = UserListAdapter()
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        }
+        lifecycleScope.launch {
+            viewModel.userList.collect { list ->
+                (binding.recyclerView.adapter as UserListAdapter).submitList(list)
+            }
+        }
         return binding.root
     }
 }

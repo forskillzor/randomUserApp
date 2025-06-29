@@ -4,7 +4,8 @@ data class User(
     val name: UserName,
     val email: String,
     val phone: String,
-    val location: Location
+    val location: Location,
+    val picture: Picture
 )
 
 data class UserName(
@@ -17,7 +18,6 @@ data class Location(
     val street: Street,
     val city: String,
     val country: String,
-    val postcode: Int
 )
 
 data class Street(
@@ -28,4 +28,10 @@ data class Street(
 data class Coordinates(
     val latitude: String,
     val longitude: String
+)
+
+data class Picture(
+    val large: String,
+    val medium: String,
+    val thumbnail: String
 )
