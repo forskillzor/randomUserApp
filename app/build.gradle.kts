@@ -5,14 +5,15 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
     kotlin("plugin.serialization") version "2.0.21"
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.example.forskillzor"
+    namespace = "com.forskillzor.randomUserApp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.forskillzor"
+        applicationId = "com.forskillzor.randomUserApp"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
