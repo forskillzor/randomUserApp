@@ -1,5 +1,6 @@
 package com.forskillzor.randomUserApp.ui.mapper
 
+import com.forskillzor.randomUserApp.ui.models.Coordinates
 import com.forskillzor.randomUserApp.ui.models.Location
 import com.forskillzor.randomUserApp.ui.models.Picture
 import com.forskillzor.randomUserApp.ui.models.Street
@@ -24,6 +25,10 @@ fun UserDomain.toUI(): User {
             ),
             city = this.location.city,
             country = this.location.country,
+            coordinates = Coordinates(
+                latitude = this.location.coordinates.latitude,
+                longitude = this.location.coordinates.longitude
+            )
         ),
         picture = Picture(
             large = this.picture.large,

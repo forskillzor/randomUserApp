@@ -1,5 +1,6 @@
 package com.forskillzor.randomUserApp.ui.userList
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -48,13 +49,14 @@ class UserListAdapter(
 
     inner class UserViewHolder(val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(user: User) {
             with(binding) {
                 first.text = user.name.first
                 second.text = user.name.last
                 country.text = user.location.country
                 city.text = user.location.city
-                phone.text = user.phone
+                phone.text = "+${user.phone}"
                 email.text = user.email
                 Glide.with(avatar.context)
                     .load(user.picture.medium)

@@ -1,5 +1,6 @@
 package com.forskillzor.randomUserApp.data.mapper
 
+import com.forskillzor.randomUserApp.domain.models.Coordinates
 import com.forskillzor.randomUserApp.domain.models.Picture
 import com.forskillzor.randomUserApp.data.models.UserDto
 import com.forskillzor.randomUserApp.domain.models.Location
@@ -24,6 +25,10 @@ fun UserDto.toDomain(): User {
             ),
             city = this.location.city,
             country = this.location.country,
+            coordinates = Coordinates(
+                latitude = this.location.coordinates.latitude,
+                longitude = this.location.coordinates.longitude
+            )
         ),
         picture = Picture(
             large = this.picture.large,
