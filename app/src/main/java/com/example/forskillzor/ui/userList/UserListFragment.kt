@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.forskillzor.R
+import com.example.forskillzor.databinding.FragmentUserListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
+    private lateinit var binding: FragmentUserListBinding
     private val viewModel: UserListViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +23,9 @@ class UserListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_user_list, container, false)
+        binding = FragmentUserListBinding.inflate(layoutInflater, container, false)
+        // todo add adapter here
+//        binding.recyclerView.adapter =
+        return binding.root
     }
 }
