@@ -21,7 +21,8 @@ class UserListFragment : Fragment() {
     private val viewModel: UserListViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getUserList()
+        if (viewModel.userList.value.isEmpty())
+            viewModel.getUserList()
     }
 
     override fun onCreateView(
@@ -33,10 +34,15 @@ class UserListFragment : Fragment() {
         binding.recyclerView.apply {
             adapter = UserListAdapter { user ->
                 UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(user)
-                    .let {binding.root.findNavController().navigate(it)}
+                    .let { binding.root.findNavController().navigate(it) }
             }
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
         }
         lifecycleScope.launch {
             viewModel.userList.collect { list ->

@@ -56,12 +56,8 @@ class UserDetailsFragment : Fragment() {
                 startActivity(Intent(Intent.ACTION_SENDTO, "mailto:${user.email}".toUri()))
             }
             location.setOnClickListener {
-                val a = 54.932537
-                val b = 82.910438
-//                val latitude = user.location.coordinates.latitude
-//                val longitude = user.location.coordinates.longitude
-                val latitude = a
-                val longitude = b
+                val latitude = user.location.coordinates.latitude
+                val longitude = user.location.coordinates.longitude
                 startActivity(Intent(Intent.ACTION_VIEW, "geo:$latitude,$longitude".toUri()))
             }
 
