@@ -1,6 +1,7 @@
 package com.forskillzor.randomUserApp.domain.models
 
 data class User(
+    val id: Int,
     val title: String,
     val firstName: String,
     val lastName: String,

@@ -1,10 +1,10 @@
-package com.forskillzor.randomUserApp.ui.mapper
+package com.forskillzor.randomUserApp.data.mapper
 
-import com.forskillzor.randomUserApp.ui.models.User
+import com.forskillzor.randomUserApp.domain.models.User
 
-typealias UserDomain = com.forskillzor.randomUserApp.domain.models.User
+typealias UserEntity = com.forskillzor.randomUserApp.data.models.User
 
-fun UserDomain.toUI(): User {
+fun UserEntity.toDomain(): User {
     return User(
         id = this.id,
         title = this.title,

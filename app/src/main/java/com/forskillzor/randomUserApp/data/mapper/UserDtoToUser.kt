@@ -1,10 +1,11 @@
 package com.forskillzor.randomUserApp.data.mapper
 
 import com.forskillzor.randomUserApp.data.models.UserDto
-import com.forskillzor.randomUserApp.domain.models.User
+import com.forskillzor.randomUserApp.data.models.User
 
-fun UserDto.toDomain(): User {
+fun UserDto.toEntity(): User {
     return User(
+        id = generateId(this.name.first, this.name.last, this.email, this.phone),
         title = this.name.title,
         firstName = this.name.first,
         lastName = this.name.last,
@@ -19,4 +20,7 @@ fun UserDto.toDomain(): User {
         pictureLarge = this.picture.large,
         pictureMedium = this.picture.medium,
     )
+}
+fun generateId(firstName: String, lastName: String, email: String, phone: String): Int {
+    return (firstName + lastName + email + phone).hashCode()
 }

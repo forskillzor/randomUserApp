@@ -15,6 +15,7 @@ import com.forskillzor.randomUserApp.databinding.FragmentUserListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+// TODO  add UI state
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
     private lateinit var binding: FragmentUserListBinding

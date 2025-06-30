@@ -1,9 +1,12 @@
 package com.forskillzor.randomUserApp.data.models
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Entity
-data class UserEntity(
+@Entity(tableName = "users")
+data class User(
+    @PrimaryKey
+    val id: Int,
     val title: String,
     val firstName: String,
     val lastName: String,
@@ -16,5 +19,5 @@ data class UserEntity(
     val latitude: String,
     val longitude: String,
     val pictureLarge: String,
-    val pictureMedium: String
+    val pictureMedium: String,
 )
