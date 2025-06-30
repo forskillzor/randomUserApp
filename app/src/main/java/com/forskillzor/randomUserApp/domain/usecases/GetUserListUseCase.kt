@@ -2,8 +2,10 @@ package com.forskillzor.randomUserApp.domain.usecases
 
 import com.forskillzor.randomUserApp.domain.models.User
 import com.forskillzor.randomUserApp.domain.repository.UserRepository
-import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+
 
 interface GetUserListUseCase {
 
