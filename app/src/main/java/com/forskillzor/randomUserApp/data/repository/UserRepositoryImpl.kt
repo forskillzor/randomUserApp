@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.flow
 class UserRepositoryImpl @Inject constructor(
     private val api: UserApi
 ): UserRepository {
+    // todo add database query here
     override fun getUserList(): Flow<List<User>> {
         return flow {
             val userList = api.getUserList()
