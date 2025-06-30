@@ -52,14 +52,14 @@ class UserListAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(user: User) {
             with(binding) {
-                first.text = user.name.first
-                second.text = user.name.last
-                country.text = user.location.country
-                city.text = user.location.city
+                first.text = user.firstName
+                second.text = user.lastName
+                country.text = user.country
+                city.text = user.city
                 phone.text = "+${user.phone}"
                 email.text = user.email
                 Glide.with(avatar.context)
-                    .load(user.picture.medium)
+                    .load(user.pictureMedium)
                     .circleCrop()
                     .into(avatar)
                 root.setOnClickListener {

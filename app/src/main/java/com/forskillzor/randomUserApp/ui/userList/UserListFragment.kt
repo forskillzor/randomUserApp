@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
     private lateinit var binding: FragmentUserListBinding
+    private lateinit var recyclerListAdapter: UserListAdapter
     private val viewModel: UserListViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +33,12 @@ class UserListFragment : Fragment() {
         binding = FragmentUserListBinding.inflate(layoutInflater, container, false)
         // todo add adapter here
         binding.recyclerView.apply {
-            adapter = UserListAdapter { user ->
+
+            recyclerListAdapter = UserListAdapter { user ->
                 UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(user)
                     .let { binding.root.findNavController().navigate(it) }
             }
+            adapter = recyclerListAdapter
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             addItemDecoration(
                 DividerItemDecoration(
@@ -46,7 +49,7 @@ class UserListFragment : Fragment() {
         }
         lifecycleScope.launch {
             viewModel.userList.collect { list ->
-                (binding.recyclerView.adapter as UserListAdapter).submitList(list)
+                recyclerListAdapter.submitList(list)
             }
         }
         return binding.root

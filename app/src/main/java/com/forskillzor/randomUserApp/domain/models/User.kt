@@ -1,38 +1,17 @@
 package com.forskillzor.randomUserApp.domain.models
 
 data class User(
-    val name: UserName,
+    val title: String,
+    val firstName: String,
+    val lastName: String,
     val email: String,
     val phone: String,
-    val location: Location,
-    val picture: Picture
-)
-
-data class UserName(
-    val title: String,
-    val first: String,
-    val last: String
-)
-
-data class Location(
-    val street: Street,
+    val streetNumber: Int,
+    val streetName: String,
     val city: String,
     val country: String,
-    val coordinates: Coordinates
-)
-
-data class Street(
-    val number: Int,
-    val name: String
-)
-
-data class Coordinates(
     val latitude: String,
-    val longitude: String
-)
-
-data class Picture(
-    val large: String,
-    val medium: String,
-    val thumbnail: String
+    val longitude: String,
+    val pictureLarge: String,
+    val pictureMedium: String
 )

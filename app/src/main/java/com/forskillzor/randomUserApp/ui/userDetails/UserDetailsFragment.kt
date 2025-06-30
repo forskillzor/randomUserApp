@@ -34,19 +34,19 @@ class UserDetailsFragment : Fragment() {
     ): View? {
         binding = FragmentUserDetailsBinding.inflate(LayoutInflater.from(context) , container, false)
         with(binding) {
-            fullName.text = "${user.name.first} ${user.name.last}"
+            fullName.text = "${user.firstName} ${user.lastName}"
             phone.text = "+ ${user.phone}"
             email.text = user.email
-            country.text = user.location.country
-            city.text = user.location.city
-            street.text = "${user.location.street.name} ${user.location.street.number}"
+            country.text = user.country
+            city.text = user.city
+            street.text = "${user.streetName} ${user.streetNumber}"
 
             Glide.with(avatar.context)
-                .load(user.picture.large)
+                .load(user.pictureLarge)
                 .centerCrop()
                 .thumbnail(
                     Glide.with(avatar.context)
-                        .load(user.picture.large)
+                        .load(user.pictureLarge)
                 )
                 .into(avatar)
             phone.setOnClickListener {
@@ -56,8 +56,8 @@ class UserDetailsFragment : Fragment() {
                 startActivity(Intent(Intent.ACTION_SENDTO, "mailto:${user.email}".toUri()))
             }
             location.setOnClickListener {
-                val latitude = user.location.coordinates.latitude
-                val longitude = user.location.coordinates.longitude
+                val latitude = user.latitude
+                val longitude = user.longitude
                 startActivity(Intent(Intent.ACTION_VIEW, "geo:$latitude,$longitude".toUri()))
             }
 
