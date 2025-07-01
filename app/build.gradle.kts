@@ -75,6 +75,9 @@ dependencies {
     // Glide
     implementation (libs.glide)
 
+    // Swipe-to-refresh
+    implementation(libs.androidx.swiperefreshlayout)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

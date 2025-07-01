@@ -2,7 +2,7 @@ package com.forskillzor.randomUserApp.data.mapper
 
 import com.forskillzor.randomUserApp.domain.models.User
 
-typealias UserEntity = com.forskillzor.randomUserApp.data.models.User
+typealias UserEntity = com.forskillzor.randomUserApp.data.models.UserEntity
 
 fun UserEntity.toDomain(): User {
     return User(
