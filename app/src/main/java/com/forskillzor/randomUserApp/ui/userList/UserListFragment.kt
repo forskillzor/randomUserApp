@@ -15,6 +15,7 @@ import com.forskillzor.randomUserApp.databinding.FragmentUserListBinding
 import com.forskillzor.randomUserApp.ui.models.User
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -32,6 +33,13 @@ class UserListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUserListBinding.inflate(layoutInflater, container, false)
+        binding.swiperefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.refreshUserList()
+                delay(1000)
+                binding.swiperefresh.isRefreshing = false
+            }
+        }
         binding.recyclerView.apply {
 
             recyclerListAdapter = UserListAdapter { user ->
