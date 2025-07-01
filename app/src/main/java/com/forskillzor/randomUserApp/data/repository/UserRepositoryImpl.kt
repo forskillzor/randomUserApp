@@ -4,45 +4,32 @@ import com.forskillzor.randomUserApp.data.api.UserApi
 import com.forskillzor.randomUserApp.data.local.UserDao
 import com.forskillzor.randomUserApp.data.mapper.toDomain
 import com.forskillzor.randomUserApp.data.mapper.toEntity
-import com.forskillzor.randomUserApp.data.models.UserDto
 import com.forskillzor.randomUserApp.domain.models.User
 import com.forskillzor.randomUserApp.domain.repository.UserRepository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
 class UserRepositoryImpl @Inject constructor(
     private val api: UserApi,
     private val userDao: UserDao
 ) : UserRepository {
-    private val repositoryScope = CoroutineScope(Dispatchers.IO)
-    override fun getUserList(): Flow<List<User>> {
-        return flow {
-            try {
-                val users = userDao.getAll()
-                if (users.isEmpty()) {
-                    val userList = fetchUserList().map { it.toEntity() }
-                    userDao.insertAll(userList)
-                }
-                val list = userDao.getAll().map { it.toDomain() }
-                emit(list)
-            } catch (e: Exception) {
-                throw RepositoryException("failed to get users ${e.message}")
-            }
-        }
+
+    override suspend fun getUserList(): Flow<List<User>> {
+        return userDao.getAll().map { list ->
+            list.map { it.toDomain() }
+        }.flowOn(Dispatchers.IO)
     }
 
-    override fun refreshUserList() {
-//        val users = fetchUserList()
-    }
-
-    suspend fun fetchUserList(): List<UserDto> {
+    override suspend fun refreshUserList() {
         try {
-            return api.getUserList().results
+            val newUsers = api.getUserList().results.map { it.toEntity() }
+            userDao.deleteAll()
+            userDao.insertAll(newUsers)
         } catch (e: Exception) {
-            throw NetworkException("Network error ${e.message}")
+            throw RepositoryException("Refresh failed: ${e.message}")
         }
     }
 }

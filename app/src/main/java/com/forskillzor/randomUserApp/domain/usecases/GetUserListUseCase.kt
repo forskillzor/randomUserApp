@@ -10,14 +10,14 @@ import javax.inject.Inject
 
 interface GetUserListUseCase {
 
-    operator fun invoke(): Flow<List<User>>
+    suspend operator fun invoke(): Flow<List<User>>
 
 }
 
 class GetUserListUseCaseImpl @Inject constructor(
     private val repository: UserRepository
 ): GetUserListUseCase {
-    override operator fun invoke(): Flow<List<User>> {
+    override suspend operator fun invoke(): Flow<List<User>> {
         return repository.getUserList().catch { e ->
             throw GetUserListUseCaseException("failed to get users ${e.message}")
         }

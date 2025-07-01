@@ -4,6 +4,6 @@ import com.forskillzor.randomUserApp.domain.models.User
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    fun getUserList(): Flow<List<User>>
-    fun refreshUserList()
+    suspend fun getUserList(): Flow<List<User>>
+    suspend fun refreshUserList()
 }

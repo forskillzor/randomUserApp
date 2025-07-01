@@ -32,29 +32,26 @@ class UserListViewModel @Inject constructor(
     private val _state = MutableStateFlow<UIState>(UIState.Loading)
     val state = _state.asStateFlow()
 
+    init {
+        getUserList()
+    }
+
     fun getUserList() {
         viewModelScope.launch {
-            _state.value = UIState.Loading
-            try {
-                getUserListUseCase().collect { users ->
-                    _state.value = UIState.Success(users.map { it.toUI() })
-                }
-            } catch (e: Exception) {
-                _state.value = UIState.Error(
-                    when (e) {
-                        is NetworkException -> "Server unavailable"
-                        is RepositoryException -> "Local data failed"
-                        is GetUserListUseCaseException -> "Error during data processing"
-                        else -> "Unknown error"
-                    }
-                )
-
+            getUserListUseCase().collect { userList ->
+                _state.value = UIState.Success(userList.map { it.toUI() })
             }
         }
     }
 
     fun refreshUserList() {
-        refreshUserListUseCase()
-        Log.d("TAGRTRT", "swipe to refresh")
+        viewModelScope.launch {
+            _state.value = UIState.Loading
+            try {
+                refreshUserListUseCase()
+            } catch (e: Exception) {
+                _state.value = UIState.Error(e.message ?: "Refresh error")
+            }
+        }
     }
 }

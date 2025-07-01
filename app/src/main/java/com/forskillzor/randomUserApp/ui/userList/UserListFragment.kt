@@ -80,8 +80,9 @@ class UserListFragment : Fragment() {
 
     fun onError(message: String) {
         binding.progressCircular.visibility = View.GONE
+        viewModel.getUserList()
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
-            .setAction("Retry") { viewModel.getUserList()}
+            .setAction("Retry") { viewModel.refreshUserList()}
             .show()
     }
 }

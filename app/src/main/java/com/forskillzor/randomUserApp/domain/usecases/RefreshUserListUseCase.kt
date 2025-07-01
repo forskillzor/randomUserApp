@@ -5,14 +5,14 @@ import javax.inject.Inject
 
 interface RefreshUserListUseCase {
 
-    operator fun invoke()
+    suspend operator fun invoke()
 
 }
 
 class RefreshUserListUseCaseImpl @Inject constructor(
     private val repository: UserRepository
 ): RefreshUserListUseCase {
-    override operator fun invoke() {
+    override suspend operator fun invoke() {
         repository.refreshUserList()
     }
 }
