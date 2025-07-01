@@ -16,13 +16,24 @@ class UserRepositoryImpl @Inject constructor(
 ): UserRepository {
     override fun getUserList(): Flow<List<User>> {
         return flow {
-            val users = userDao.getAll()
-            if (users.isEmpty()) {
-                val userList = api.getUserList().results.map {userDto -> userDto.toEntity()}
-                userDao.insertAll(userList)
+            try {
+                val users = userDao.getAll()
+                if (users.isEmpty()) {
+                    try {
+                        val userList = api.getUserList().results.map {userDto -> userDto.toEntity()}
+                        userDao.insertAll(userList)
+                    } catch(e: Exception) {
+                        throw NetworkException("Network error ${e.message}")
+                    }
+                }
+                val list = userDao.getAll().map { user -> user.toDomain() }
+                emit(list)
+            } catch (e: Exception) {
+                throw RepositoryException("failed to get users ${e.message}")
             }
-            val list = userDao.getAll().map { user -> user.toDomain() }
-            emit(list)
         }
     }
 }
+
+class NetworkException(message: String) : Exception(message)
+class RepositoryException(message: String) : Exception(message)

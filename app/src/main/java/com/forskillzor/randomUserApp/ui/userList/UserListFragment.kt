@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.forskillzor.randomUserApp.databinding.FragmentUserListBinding
+import com.forskillzor.randomUserApp.ui.models.User
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-// TODO  add UI state
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
     private lateinit var binding: FragmentUserListBinding
@@ -23,8 +24,7 @@ class UserListFragment : Fragment() {
     private val viewModel: UserListViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (viewModel.userList.value.isEmpty())
-            viewModel.getUserList()
+        viewModel.getUserList()
     }
 
     override fun onCreateView(
@@ -32,7 +32,6 @@ class UserListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUserListBinding.inflate(layoutInflater, container, false)
-        // todo add adapter here
         binding.recyclerView.apply {
 
             recyclerListAdapter = UserListAdapter { user ->
@@ -49,10 +48,32 @@ class UserListFragment : Fragment() {
             )
         }
         lifecycleScope.launch {
-            viewModel.userList.collect { list ->
-                recyclerListAdapter.submitList(list)
+            viewModel.state.collect { state ->
+                when (state) {
+                    is UIState.Loading -> onLoading()
+                    is UIState.Error -> onError(state.message)
+                    is UIState.Success -> onSuccess(state.data)
+                }
             }
         }
         return binding.root
+    }
+
+    fun onLoading() {
+        binding.progressCircular.visibility = View.VISIBLE
+        binding.recyclerView.visibility = View.GONE
+    }
+
+    fun onSuccess(data: List<User>) {
+        recyclerListAdapter.submitList(data)
+        binding.progressCircular.visibility = View.GONE
+        binding.recyclerView.visibility = View.VISIBLE
+    }
+
+    fun onError(message: String) {
+        binding.progressCircular.visibility = View.GONE
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+            .setAction("Retry") { viewModel.getUserList()}
+            .show()
     }
 }
