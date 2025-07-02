@@ -14,6 +14,7 @@ import com.forskillzor.randomUserApp.ui.userList.UserListAdapter.UserViewHolder
 class UserListAdapter(
     private val onItemClick: (user: User) -> Unit
 ) : ListAdapter<User, UserViewHolder>(DIFF_CALLBACK) {
+    private var lastPosition = -1
     object DIFF_CALLBACK : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(
             oldItem: User,

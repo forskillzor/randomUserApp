@@ -12,7 +12,12 @@
         >
         <action
             android:id="@+id/action_userListFragment_to_userDetailsFragment"
-            app:destination="@id/userDetailsFragment" />
+            app:destination="@id/userDetailsFragment"
+            app:enterAnim="@transition/slide_in_right"
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/userDetailsFragment"
