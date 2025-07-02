@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.forskillzor.randomUserApp.R
 import com.forskillzor.randomUserApp.databinding.FragmentUserListBinding
 import com.forskillzor.randomUserApp.ui.models.User
 import com.google.android.material.snackbar.Snackbar
@@ -36,7 +38,6 @@ class UserListFragment : Fragment() {
         binding.swiperefresh.setOnRefreshListener {
             lifecycleScope.launch {
                 viewModel.refreshUserList()
-                delay(1000)
                 binding.swiperefresh.isRefreshing = false
             }
         }
@@ -74,8 +75,12 @@ class UserListFragment : Fragment() {
 
     fun onSuccess(data: List<User>) {
         recyclerListAdapter.submitList(data)
-        binding.progressCircular.visibility = View.GONE
-        binding.recyclerView.visibility = View.VISIBLE
+        binding.recyclerView.postDelayed({
+            binding.progressCircular.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.recycler_fade_in_scale)
+            binding.recyclerView.startAnimation(animation)
+        }, 100)
     }
 
     fun onError(message: String) {
