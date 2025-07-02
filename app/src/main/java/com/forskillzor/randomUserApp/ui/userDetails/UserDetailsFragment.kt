@@ -13,6 +13,8 @@ import com.forskillzor.randomUserApp.databinding.FragmentUserDetailsBinding
 import com.forskillzor.randomUserApp.ui.models.User
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.net.toUri
+import com.forskillzor.randomUserApp.R
+import com.google.android.material.snackbar.Snackbar
 
 @AndroidEntryPoint
 class UserDetailsFragment : Fragment() {
@@ -29,7 +31,7 @@ class UserDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentUserDetailsBinding.inflate(LayoutInflater.from(context) , container, false)
+        binding = FragmentUserDetailsBinding.inflate(LayoutInflater.from(context), container, false)
         with(binding) {
             fullName.text = "${user.firstName} ${user.lastName}"
             phone.text = "+ ${user.phone}"
@@ -47,15 +49,36 @@ class UserDetailsFragment : Fragment() {
                 )
                 .into(avatar)
             phone.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_DIAL, "tel:${user.phone}".toUri()))
+                try {
+                    startActivity(Intent(Intent.ACTION_DIAL, "tel:${user.phone}".toUri()))
+                } catch (e: Exception) {
+                        Snackbar.make(
+                            binding.root, getString(R.string.call_dialer_application_not_found),
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                }
             }
             email.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_SENDTO, "mailto:${user.email}".toUri()))
+                try {
+                    startActivity(Intent(Intent.ACTION_SENDTO, "mailto:${user.email}".toUri()))
+                } catch (e: Exception) {
+                    Snackbar.make(
+                        binding.root, getString(R.string.email_application_not_found),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
             }
             location.setOnClickListener {
                 val latitude = user.latitude
                 val longitude = user.longitude
-                startActivity(Intent(Intent.ACTION_VIEW, "geo:$latitude,$longitude".toUri()))
+                try {
+                    startActivity(Intent(Intent.ACTION_VIEW, "geo:$latitude,$longitude".toUri()))
+                } catch (e: Exception) {
+                    Snackbar.make(
+                        binding.root, getString(R.string.map_application_not_found),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
             }
 
         }

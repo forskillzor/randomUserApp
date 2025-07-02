@@ -1,17 +1,12 @@
 package com.forskillzor.randomUserApp.ui.userList
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.forskillzor.randomUserApp.data.repository.NetworkException
-import com.forskillzor.randomUserApp.data.repository.RepositoryException
 import com.forskillzor.randomUserApp.ui.models.User
 import com.forskillzor.randomUserApp.domain.usecases.GetUserListUseCase
-import com.forskillzor.randomUserApp.domain.usecases.GetUserListUseCaseException
 import com.forskillzor.randomUserApp.domain.usecases.RefreshUserListUseCase
 import com.forskillzor.randomUserApp.ui.mapper.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
