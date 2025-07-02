@@ -38,49 +38,65 @@
         android:orientation="vertical"
         android:layout_margin="16dp"
         >
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="+79134743702"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:layout_marginBottom="16dp"
+            android:drawableStart="@drawable/baseline_phone_24"
+            android:drawablePadding="8dp"
             />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="formyfrontend@gmail.com"
             android:textSize="18sp"
+            android:drawableStart="@drawable/baseline_mail_outline_24"
+            android:drawablePadding="8dp"
             />
         <LinearLayout
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="16dp"
-            >
-            <TextView
-                android:id="@+id/country"
+            android:orientation="horizontal" >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:src="@drawable/baseline_location_on_24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Russia"
-                android:textSize="16sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"
                 />
-            <TextView
-                android:id="@+id/city"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Novosibirsk"
-                android:textSize="16sp"
-                />
-            <TextView
-                android:id="@+id/street"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Gromova 23"
-                android:textSize="16sp"
-                />
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                >
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Russia"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Novosibirsk"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:id="@+id/street"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Gromova 23"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
