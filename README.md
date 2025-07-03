@@ -47,7 +47,6 @@ app/
 ├── domain/ # Business logic
 └── presentation # UI layer
 
-
 ## Key Features Implementation
 
 ### Data Flow
