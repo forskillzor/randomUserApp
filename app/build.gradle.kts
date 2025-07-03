@@ -102,4 +102,11 @@ dependencies {
 
     // Turbine for stateFlow testing
     testImplementation (libs.turbine)
+
+    // OkHttp3 mock web server
+    androidTestImplementation(libs.mockwebserver)
+
+    // serialization
+    androidTestImplementation(libs.kotlinx.serialization.json)
+    androidTestImplementation(libs.retrofit2.kotlinx.serialization.converter)
 }
