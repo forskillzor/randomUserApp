@@ -79,7 +79,23 @@ dependencies {
     implementation(libs.androidx.swiperefreshlayout)
 
 
+    // Testing
+
+    // Kotlin Coroutines Testing
+    testImplementation (libs.kotlinx.coroutines.test)
+
+    // MockK
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockk.agent.jvm)
+
+    // Unit testing
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+
+    // Android testing
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+
+    // Hilt Testing
+    androidTestImplementation (libs.hilt.android.testing)
+    kspAndroidTest (libs.hilt.android.compiler)
 }

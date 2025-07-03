@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 
-
 interface GetUserListUseCase {
 
     suspend operator fun invoke(): Flow<List<User>>
@@ -16,10 +15,12 @@ interface GetUserListUseCase {
 
 class GetUserListUseCaseImpl @Inject constructor(
     private val repository: UserRepository
-): GetUserListUseCase {
+) : GetUserListUseCase {
     override suspend operator fun invoke(): Flow<List<User>> {
-        return repository.getUserList().catch { e ->
-            throw GetUserListUseCaseException("failed to get users ${e.message}")
+        return try {
+            repository.getUserList()
+        } catch (e: Exception) {
+            throw GetUserListUseCaseException("some error in repository ${e.message}")
         }
     }
 }
