@@ -26,7 +26,6 @@ class UserListFragment : Fragment() {
     private val viewModel: UserListViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getUserList()
     }
 
     override fun onCreateView(

@@ -21,6 +21,9 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getUserList(): Flow<List<User>> {
         return userDao.getAll().map { list ->
+            if (list.isEmpty()) {
+                refreshUserList()
+            }
             list.map { it.toDomain() }
         }.flowOn(Dispatchers.IO)
     }
