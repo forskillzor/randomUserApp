@@ -11,6 +11,8 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import okio.IOException
+import retrofit2.HttpException
 
 class UserRepositoryImpl @Inject constructor(
     private val api: UserApi,
@@ -28,8 +30,12 @@ class UserRepositoryImpl @Inject constructor(
             val newUsers = api.getUserList().results.map { it.toEntity() }
             userDao.deleteAll()
             userDao.insertAll(newUsers)
+        } catch (e: IOException) {
+            throw NetworkException("Network error: ${e.message}")
+        } catch (e: HttpException) {
+            throw NetworkException("HTTP error: ${e.message}")
         } catch (e: Exception) {
-            throw RepositoryException("Refresh failed: ${e.message}")
+            throw RepositoryException("Repository Error: ${e.message}")
         }
     }
 }
