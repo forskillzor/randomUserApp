@@ -1,8 +1,16 @@
 package com.forskillzor.randomUserApp.data.repository
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.forskillzor.randomUserApp.data.api.UserApi
 import com.forskillzor.randomUserApp.data.local.UserDao
+import com.forskillzor.randomUserApp.data.models.Coordinates
+import com.forskillzor.randomUserApp.data.models.Location
+import com.forskillzor.randomUserApp.data.models.Picture
+import com.forskillzor.randomUserApp.data.models.Street
+import com.forskillzor.randomUserApp.data.models.UserApiResult
+import com.forskillzor.randomUserApp.data.models.UserDto
 import com.forskillzor.randomUserApp.data.models.UserEntity
+import com.forskillzor.randomUserApp.data.models.UserName
 import com.forskillzor.randomUserApp.di.DatabaseModule
 import com.forskillzor.randomUserApp.domain.models.User
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -74,4 +82,5 @@ class UserRepositoryIntegrationTest {
         assertEquals(entity.pictureLarge, user.pictureLarge)
         assertEquals(entity.pictureMedium, user.pictureMedium)
     }
+
 }
