@@ -98,4 +98,5 @@ dependencies {
     // Hilt Testing
     androidTestImplementation (libs.hilt.android.testing)
     kspAndroidTest (libs.hilt.android.compiler)
+    testImplementation(kotlin("test"))
 }

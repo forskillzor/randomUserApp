@@ -11,7 +11,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import okio.IOException
+import java.io.IOException
 import retrofit2.HttpException
 
 class UserRepositoryImpl @Inject constructor(
