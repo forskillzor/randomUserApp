@@ -40,13 +40,6 @@ A clean Android app demonstrating modern architecture with Jetpack components, f
   <img src="https://github.com/forskillzor/randomUserApp/blob/main/screenshots/userdetails.jpeg" width="200" />
 </div>
 
-## Architecture
-
-app/
-├── data/ # Data layer (API, DB)
-├── domain/ # Business logic
-└── presentation # UI layer
-
 ## Key Features Implementation
 
 ### Data Flow
