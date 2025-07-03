@@ -3,7 +3,6 @@ package com.forskillzor.randomUserApp.domain.usecases
 import com.forskillzor.randomUserApp.domain.models.User
 import com.forskillzor.randomUserApp.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 

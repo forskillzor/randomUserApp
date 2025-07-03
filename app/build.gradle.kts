@@ -99,4 +99,7 @@ dependencies {
     androidTestImplementation (libs.hilt.android.testing)
     kspAndroidTest (libs.hilt.android.compiler)
     testImplementation(kotlin("test"))
+
+    // Turbine for stateFlow testing
+    testImplementation (libs.turbine)
 }
