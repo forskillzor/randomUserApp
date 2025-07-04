@@ -8,7 +8,7 @@ A clean Android app demonstrating modern architecture with Jetpack components, f
 - **User Details Screen**: Shows comprehensive user information
 - **Offline Support**: Caches data using Room
 - **Modern Architecture**: MVVM with Clean Architecture principles
-- **Jetpack Components**: ViewModel, LiveData, Navigation, Room
+- **Jetpack Components**: ViewModel, Coroutines Flow, Navigation, Room
 
 ## Tech Stack
 
@@ -22,11 +22,6 @@ A clean Android app demonstrating modern architecture with Jetpack components, f
 | `Kotlin Serialization` | JSON parsing | Lightweight with native Kotlin support |
 | `Hilt` | Dependency injection | Easier than Dagger for beginners |
 | `Glide` | Image loading | Fast with good caching support |
-
-### UI Components
-- RecyclerView with DiffUtil
-- SwipeRefreshLayout
-- Material Design components
 
 ### Testing
 - JUnit + MockK for unit tests
