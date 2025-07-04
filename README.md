@@ -1,5 +1,8 @@
 # Random User App (Android)
 
+- **Use Release Build variant to run application or rename AndroidManifest.xml in debug directory**
+- **Use Debug Build variant for testing**
+
 A clean Android app demonstrating modern architecture with Jetpack components, fetching and displaying random user data from [RandomUser.me API](https://randomuser.me/).
 
 ## Features
